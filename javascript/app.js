@@ -57,6 +57,7 @@ var trivia = {
   },
   //initialze game
   startGame: function() {
+    event.preventDefault();
     //restart game
     trivia.currentSet = 0;
     trivia.correct = 0;
@@ -70,7 +71,7 @@ var trivia = {
     //timer
     $("#timer").text(trivia.timer);
     //remove start button
-    // $("start").hide();
+    $("#start").hide();
     // $("remainingTime").show();
     //first question asked
     trivia.nextQuestion();
@@ -86,9 +87,11 @@ var trivia = {
     var questionContent = Object.values(trivia.questions)[trivia.currentSet];
     $("#question").text(questionContent);
     var questionOptions = Object.values(trivia.options)[trivia.currentSet];
-    $.each(questionOptions, function(index, key) {
+    console.log(questionOptions);
+    $.each(questionOptions, function(i, val) {
+      // console.log(`z is ${z}, i is ${i}`);
       $("#options").append(
-        $('<button class="option btn btn-info btn-lg">' + options + "</button")
+        $('<button class="option btn btn-info btn-lg">').text(val)
       );
     });
   },
